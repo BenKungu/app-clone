@@ -1,0 +1,331 @@
+[
+  {
+    "day": "Mon",
+    "date": "11 Aug 2023",
+    "year": "2023",
+    "slots": [
+      {
+        "id": 2,
+        "day_of_week": 1,
+        "start_time": "08:00",
+        "end_time": "10:00",
+        "max_bookings": 5,
+        "bookings_count": 2
+      },
+      {
+        "id": 3,
+        "day_of_week": 1,
+        "start_time": "11:00",
+        "end_time": "13:00",
+        "max_bookings": 5,
+        "bookings_count": 2
+      },
+      {
+        "id": 1,
+        "day_of_week": 1,
+        "start_time": "14:00",
+        "end_time": "16:00",
+        "max_bookings": 5,
+        "bookings_count": 2
+      },
+      {
+        "id": 5,
+        "day_of_week": 1,
+        "start_time": "17:00",
+        "end_time": "19:00",
+        "max_bookings": 5,
+        "bookings_count": 2
+      },
+      {
+        "id": 93,
+        "day_of_week": 1,
+        "start_time": "20:00",
+        "end_time": "22:00",
+        "max_bookings": 5,
+        "bookings_count": 2
+      }
+    ]
+  },
+  {
+    "day": "Tue",
+    "date": "12 Aug 2023",
+    "year": "2023",
+    "slots": [
+      {
+        "id": 4,
+        "day_of_week": 2,
+        "start_time": "08:00",
+        "end_time": "10:00",
+        "max_bookings": 5,
+        "bookings_count": 2
+      },
+      {
+        "id": 8,
+        "day_of_week": 2,
+        "start_time": "11:00",
+        "end_time": "13:00",
+        "max_bookings": 5,
+        "bookings_count": 2
+      },
+      {
+        "id": 17,
+        "day_of_week": 2,
+        "start_time": "14:00",
+        "end_time": "16:00",
+        "max_bookings": 5,
+        "bookings_count": 2
+      },
+      {
+        "id": 23,
+        "day_of_week": 2,
+        "start_time": "17:00",
+        "end_time": "19:00",
+        "max_bookings": 5,
+        "bookings_count": 2
+      },
+      {
+        "id": 62,
+        "day_of_week": 2,
+        "start_time": "20:00",
+        "end_time": "22:00",
+        "max_bookings": 5,
+        "bookings_count": 2
+      }
+    ]
+  },
+  {
+    "day": "Wed",
+    "date": "13 Aug 2023",
+    "year": "2023",
+    "slots": [
+      {
+        "id": 9,
+        "day_of_week": 3,
+        "start_time": "08:00",
+        "end_time": "10:00",
+        "max_bookings": 1,
+        "bookings_count": 2
+      },
+      {
+        "id": 29,
+        "day_of_week": 3,
+        "start_time": "11:00",
+        "end_time": "13:00",
+        "max_bookings": 1,
+        "bookings_count": 2
+      },
+      {
+        "id": 78,
+        "day_of_week": 3,
+        "start_time": "14:00",
+        "end_time": "16:00",
+        "max_bookings": 1,
+        "bookings_count": 2
+      },
+      {
+        "id": 31,
+        "day_of_week": 3,
+        "start_time": "17:00",
+        "end_time": "19:00",
+        "max_bookings": 1,
+        "bookings_count": 2
+      },
+      {
+        "id": 77,
+        "day_of_week": 3,
+        "start_time": "20:00",
+        "end_time": "22:00",
+        "max_bookings": 1,
+        "bookings_count": 2
+      }
+    ]
+  },
+  {
+    "day": "Thu",
+    "date": "14 Aug 2023",
+    "year": "2023",
+    "slots": [
+      {
+        "id": 18,
+        "day_of_week": 4,
+        "start_time": "08:00",
+        "end_time": "10:00",
+        "max_bookings": 1,
+        "bookings_count": 2
+      },
+      {
+        "id": 11,
+        "day_of_week": 4,
+        "start_time": "11:00",
+        "end_time": "13:00",
+        "max_bookings": 1,
+        "bookings_count": 2
+      },
+      {
+        "id": 15,
+        "day_of_week": 4,
+        "start_time": "14:00",
+        "end_time": "16:00",
+        "max_bookings": 1,
+        "bookings_count": 2
+      },
+      {
+        "id": 99,
+        "day_of_week": 4,
+        "start_time": "17:00",
+        "end_time": "19:00",
+        "max_bookings": 1,
+        "bookings_count": 2
+      },
+      {
+        "id": 75,
+        "day_of_week": 4,
+        "start_time": "20:00",
+        "end_time": "22:00",
+        "max_bookings": 1,
+        "bookings_count": 2
+      }
+    ]
+  },
+  {
+    "day": "Fri",
+    "date": "15 Aug 2023",
+    "year": "2023",
+    "slots": [
+      {
+        "id": 14,
+        "day_of_week": 5,
+        "start_time": "08:00",
+        "end_time": "10:00",
+        "max_bookings": 1,
+        "bookings_count": 2
+      },
+      {
+        "id": 51,
+        "day_of_week": 5,
+        "start_time": "11:00",
+        "end_time": "13:00",
+        "max_bookings": 1,
+        "bookings_count": 2
+      },
+      {
+        "id": 68,
+        "day_of_week": 5,
+        "start_time": "14:00",
+        "end_time": "16:00",
+        "max_bookings": 1,
+        "bookings_count": 2
+      },
+      {
+        "id": 79,
+        "day_of_week": 5,
+        "start_time": "17:00",
+        "end_time": "19:00",
+        "max_bookings": 1,
+        "bookings_count": 2
+      },
+      {
+        "id": 71,
+        "day_of_week": 5,
+        "start_time": "20:00",
+        "end_time": "22:00",
+        "max_bookings": 1,
+        "bookings_count": 2
+      }
+    ]
+  },
+  {
+    "day": "Sat",
+    "date": "16 Aug 2023",
+    "year": "2023",
+    "slots": [
+      {
+        "id": 22,
+        "day_of_week": 6,
+        "start_time": "08:00",
+        "end_time": "10:00",
+        "max_bookings": 1,
+        "bookings_count": 2
+      },
+      {
+        "id": 44,
+        "day_of_week": 6,
+        "start_time": "11:00",
+        "end_time": "13:00",
+        "max_bookings": 1,
+        "bookings_count": 2
+      },
+      {
+        "id": 39,
+        "day_of_week": 6,
+        "start_time": "14:00",
+        "end_time": "16:00",
+        "max_bookings": 1,
+        "bookings_count": 2
+      },
+      {
+        "id": 34,
+        "day_of_week": 6,
+        "start_time": "17:00",
+        "end_time": "19:00",
+        "max_bookings": 1,
+        "bookings_count": 2
+      },
+      {
+        "id": 74,
+        "day_of_week": 6,
+        "start_time": "20:00",
+        "end_time": "22:00",
+        "max_bookings": 1,
+        "bookings_count": 2
+      }
+    ]
+  },
+  {
+    "day": "Sun",
+    "date": "17 Aug 2023",
+    "year": "2023",
+    "slots": [
+      {
+        "id": 50,
+        "day_of_week": 7,
+        "start_time": "08:00",
+        "end_time": "10:00",
+        "max_bookings": 1,
+        "bookings_count": 2
+      },
+      {
+        "id": 91,
+        "day_of_week": 7,
+        "start_time": "11:00",
+        "end_time": "13:00",
+        "max_bookings": 1,
+        "bookings_count": 2
+      },
+      {
+        "id": 25,
+        "day_of_week": 7,
+        "start_time": "14:00",
+        "end_time": "16:00",
+        "max_bookings": 1,
+        "bookings_count": 2
+      },
+      {
+        "id": 36,
+        "day_of_week": 7,
+        "start_time": "17:00",
+        "end_time": "19:00",
+        "max_bookings": 1,
+        "bookings_count": 2
+      },
+      {
+        "id": 63,
+        "day_of_week": 7,
+        "start_time": "20:00",
+        "end_time": "22:00",
+        "max_bookings": 1,
+        "bookings_count": 2
+      }
+    ]
+  }
+]
