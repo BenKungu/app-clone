@@ -1,48 +1,67 @@
 import 'bootstrap-daterangepicker/daterangepicker.css';
-import React , { useState } from 'react';
-import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import IMG01 from '../../assets/images/doctor-thumb-02.jpg';
+import IMG01 from '../../assets/images/avatar.jpg';
 import 'bootstrap/dist/css/bootstrap.css';
 import Footer from "../../components/footer";
-import sampleData from './sampleData.json';
 import { useNavigate, useLocation } from 'react-router-dom';
-
+import Requests from '../services/Requests';
+import DataGenerator from '../services/DataGenerator';
 
 const Booking = (props) => {
 
+	const generatorInstance = new DataGenerator();
+
 	const location = useLocation();
+	const navigate = useNavigate();
 
-	// Retrieve the bookingData from the location state
 	const clientData = location.state?.formData || null;
-  
-	
-  if (clientData === null || Object.keys(clientData).length === 0 ){
-  
-	window.location.href = "http://localhost:3000/";
-  
-  }
 
+	if (clientData === null || Object.keys(clientData).length === 0) {
+		window.location.href = "/";
+	}
 
-	const [scheduleData] = useState(sampleData);
+	const [scheduleData, setScheduleData] = useState(generatorInstance.generateData());
 	const [currentIndex, setCurrentIndex] = useState(0);
 
+	// if (!scheduleData || scheduleData.length === 0) {
+	// 	// Handle the case when scheduleData is empty or undefined
+	// 	return <div>No schedule data available.</div>;
+	// }
 
-	if (!scheduleData || scheduleData.length === 0) {
-		// Handle the case when scheduleData is empty or undefined
-		return <div>No schedule data available.</div>;
+	const getScheduleData = (start_date) => {
+		setLoading(true);
+		Requests.getSlots(generatorInstance.formatDate(start_date)).then((res) => {
+			setScheduleData(res.data);
+		}).catch((err) => {
+			alert("ERR : " + JSON.stringify(err))
+		})
+			.finally(() => {
+				setLoading(false);
+			})
 	}
+
+	useEffect(() => {
+		getScheduleData(globalDate);
+	}, [])
 
 	const [globalDate, setGlobalDate] = useState(new Date())
 
-	const handlePreviousDay = () => {
+	const handlePreviousDay = (e) => {
 		// setCurrentIndex((prevIndex) => Math.max(prevIndex - 1, 0));
+		e.preventDefault();
 		getPreviousDate();
+
+		getScheduleData(globalDate);
 	};
 
-	const handleNextDay = () => {
+	const handleNextDay = (e) => {
 		// setCurrentIndex((prevIndex) => Math.min(prevIndex + 1, scheduleData.length - 1));
+		e.preventDefault();
 		getNextDate();
+
+		getScheduleData(globalDate);
+
 	};
 
 	const calculateDate = (originalDate, daysToAddOrSubtract) => {
@@ -54,7 +73,7 @@ const Booking = (props) => {
 		// Check if the new date is earlier than today
 		const today = new Date();
 		if (newDate < today) {
-			alert("you can't select past days")
+			// alert("you can't select past days")
 			return today;
 		}
 
@@ -65,19 +84,16 @@ const Booking = (props) => {
 	const getPreviousDate = () => {
 		const previousDate = new Date(globalDate);
 		setGlobalDate(calculateDate(globalDate, -3))
-		//   globalDate.setDate(previousDate.getDate() - 3);
-		//   return globalDate;
 	};
 
 	const getNextDate = () => {
 		const nextDate = new Date(globalDate);
 		setGlobalDate(calculateDate(globalDate, 3))
-
 	};
 
 
 	const currentSchedule = scheduleData[currentIndex];
-	const currentDate = currentSchedule.date;
+	const currentDate = currentSchedule?.date;
 
 	const convertToAmPm = (time24) => {
 		// Extract the hours and minutes from the input time
@@ -110,7 +126,6 @@ const Booking = (props) => {
 	}
 
 
-	const navigate = useNavigate()
 	const handleConfirmBooking = (e) => {
 		e.preventDefault()
 
@@ -120,7 +135,16 @@ const Booking = (props) => {
 			"date": selectedSlot?.date
 		}
 
-		navigate('/booking-success', { state: { selectedSlot } })
+		Requests.createAppointment(bookingData).then((res) => {
+
+			if (res.data.success === true) {
+				navigate('/booking-success', { state: { selectedSlot } });
+			}
+
+		}).catch((err) => {
+			alert(err.response.data.message);
+		});
+
 	}
 
 	const getCurrentDate = () => {
@@ -141,11 +165,13 @@ const Booking = (props) => {
 		return new Date().toLocaleDateString('en-US', dayOptions);
 	};
 
+	const [loading, setLoading] = useState(true);
+
 
 
 	return (
 		<div>
-			<div className="breadcrumb-bar-two pt-3 pb-1 p-0 " style={{ minHeight: "100px"}}>
+			<div className="breadcrumb-bar-two pt-3 pb-1 p-0 " style={{ minHeight: "100px" }}>
 				<div className="container">
 					<div className="row align-items-center inner-banner p-0">
 						<div className="col-md-12 col-12 text-center">
@@ -174,7 +200,7 @@ const Booking = (props) => {
 										</Link>
 										<div className="booking-info">
 											<h4>
-												<Link to="/patient/doctor-profile">
+												<Link to="/about-us">
 													C.E.O Alfred Mathu</Link>
 											</h4>
 											<div className="rating">
@@ -198,7 +224,7 @@ const Booking = (props) => {
 											<div className="day-slot">
 												<ul>
 													<li className="left-arrow">
-														<Link to="#" onClick={handlePreviousDay}>
+														<Link to="#" onClick={(e) => handlePreviousDay(e)}>
 															<i className="fa fa-chevron-left"></i>
 														</Link>
 													</li>
@@ -206,13 +232,13 @@ const Booking = (props) => {
 														<li key={index} className={index === currentIndex ? 'active' : ''}>
 															<Link to={`#${item.day}`}>
 																<span>{item.day}</span>
-																<span className="slot-date">{item.date}</span>
+																<span className="slot-date">{item?.date}</span>
 
 															</Link>
 														</li>
 													))}
 													<li className="right-arrow">
-														<Link to="#" onClick={handleNextDay}>
+														<Link to="#" onClick={(e) => handleNextDay(e)}>
 															<i className="fa fa-chevron-right"></i>
 														</Link>
 													</li>
@@ -224,20 +250,32 @@ const Booking = (props) => {
 								<div className="schedule-cont">
 									<div className="row">
 										<div className="col-md-12">
-											<div className={`time-slot`}>
-												<ul className="clearfix">
-													{scheduleData.map((schedule, index) => (
-														<li key={index}>
-															{schedule.slots.map((slot, slotIndex) => (
-																<Link key={slotIndex} className={`timing ${selectedSlot?.slot?.id === slot.id ? "selected" : ""}`} to="#0" onClick={(e) => handleClickSlot(e, slot, schedule.date)}>
-
-																	<span>{convertToAmPm(slot.start_time)}</span>
-																</Link>
-															))}
-														</li>
-													))}
-												</ul>
-											</div>
+											{loading ? (
+												<div className="text-center loading-container">
+													<div className="spinner-border text-primary" role="status">
+														<span className="visually-hidden">Loading...</span>
+													</div>
+												</div>
+											) : (
+												<div className={`time-slot`}>
+													<ul className="clearfix">
+														{scheduleData.map((schedule, index) => (
+															<li key={index}>
+																{schedule.slots.map((slot, slotIndex) => (
+																	<Link
+																		key={slotIndex}
+																		className={`timing ${selectedSlot?.slot?.id === slot.id ? "selected" : ""}`}
+																		to="#0"
+																		onClick={(e) => handleClickSlot(e, slot, schedule?.date)}
+																	>
+																		<span>{convertToAmPm(slot.start_time)}</span>
+																	</Link>
+																))}
+															</li>
+														))}
+													</ul>
+												</div>
+											)}
 										</div>
 									</div>
 								</div>
@@ -245,16 +283,16 @@ const Booking = (props) => {
 							<div>
 							</div>
 							<div className="submit-section proceed-btn text-end">
-								{ selectedSlot ? (
-							<button className="btn btn-primary submit-btn" onClick={(e) => handleConfirmBooking(e)}>
-											Confirm booking
-											</button>
-								):(
+								{selectedSlot ? (
+									<button className="btn btn-primary submit-btn" onClick={(e) => handleConfirmBooking(e)}>
+										Confirm booking
+									</button>
+								) : (
 									<button className="btn btn-primary submit-btn" onClick={(e) => handleConfirmBooking(e)} disabled>
-											Confirm booking
-											</button>
-								 )}
-								
+										Confirm booking
+									</button>
+								)}
+
 							</div>
 						</div>
 					</div>

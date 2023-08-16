@@ -10,8 +10,6 @@ import ScheduleTiming from './pages/scheduletimings'
 import DoctorDashboard from './pages/dashboard'
 import Home1 from './pages/home/home';
 import Booking from './pages/booking/booking1';
-//import MypPatient from './pages/mypatient'
-//import AppointmentList from './pages/appointments-list'
 
 
 const App = () => {
