@@ -1,0 +1,130 @@
+[
+  {
+    "appointment": {
+      "id": 12,
+      "client_id": 12,
+      "slot_id": 12,
+      "meeting": "Physical Meeting",
+      "service": "General Insurance",
+      "date": "2023-08-22",
+      "created_at": "2023-08-22T09:19:11.000000Z",
+      "updated_at": "2023-08-22T09:19:11.000000Z",
+      "location": "",
+      "client": {
+        "id": 12,
+        "name": "hjghg jkhgjhjkh",
+        "email": "hjghjjh@hg",
+        "phone": "56456456",
+        "profession": "jhkgghjhg",
+        "age": 32,
+        "created_at": "2023-08-22T09:19:11.000000Z",
+        "updated_at": "2023-08-22T09:19:11.000000Z"
+      },
+      "slot": {
+        "id": 12,
+        "day_of_week": 2,
+        "start_time": "10:00:00",
+        "end_time": "11:30:00",
+        "max_bookings": 1,
+        "created_at": null,
+        "updated_at": null
+      }
+    }
+  },
+  {
+    "appointment": {
+      "id": 11,
+      "client_id": 11,
+      "slot_id": 13,
+      "meeting": "Physical Meeting",
+      "service": "General Insurance",
+      "date": "2023-08-22",
+      "created_at": "2023-08-22T09:06:12.000000Z",
+      "updated_at": "2023-08-22T09:06:12.000000Z",
+      "location": "",
+      "client": {
+        "id": 11,
+        "name": "jhkgjhjh hjkgjhkkjh",
+        "email": "bjkbnmn@bnvjbhv",
+        "phone": "65465",
+        "profession": "hgjhjh",
+        "age": 23,
+        "created_at": "2023-08-22T09:06:12.000000Z",
+        "updated_at": "2023-08-22T09:06:12.000000Z"
+      },
+      "slot": {
+        "id": 13,
+        "day_of_week": 2,
+        "start_time": "11:30:00",
+        "end_time": "13:00:00",
+        "max_bookings": 1,
+        "created_at": null,
+        "updated_at": null
+      }
+    }
+  },
+  {
+    "appointment": {
+      "id": 13,
+      "client_id": 13,
+      "slot_id": 15,
+      "meeting": "Physical Meeting",
+      "service": "General Insurance",
+      "date": "2023-08-22",
+      "created_at": "2023-08-22T13:22:43.000000Z",
+      "updated_at": "2023-08-22T13:22:43.000000Z",
+      "location": "hgghhj",
+      "client": {
+        "id": 13,
+        "name": "hgfhg jhgjhjh",
+        "email": "hgghfhg@hghj",
+        "phone": "54453543",
+        "profession": "hgfhghg",
+        "age": 23,
+        "created_at": "2023-08-22T13:22:43.000000Z",
+        "updated_at": "2023-08-22T13:22:43.000000Z"
+      },
+      "slot": {
+        "id": 15,
+        "day_of_week": 2,
+        "start_time": "14:30:00",
+        "end_time": "16:00:00",
+        "max_bookings": 1,
+        "created_at": null,
+        "updated_at": null
+      }
+    }
+  },
+  {
+    "appointment": {
+      "id": 14,
+      "client_id": 14,
+      "slot_id": 16,
+      "meeting": "Physical Meeting",
+      "service": "Personalized Retirement Saving",
+      "date": "2023-08-22",
+      "created_at": "2023-08-22T13:48:36.000000Z",
+      "updated_at": "2023-08-22T13:48:36.000000Z",
+      "location": "Nairobi",
+      "client": {
+        "id": 14,
+        "name": "jhghg jhkgjhjhk",
+        "email": "ffdggh@bvnvn",
+        "phone": "43524325543",
+        "profession": "nfgfghg",
+        "age": 453,
+        "created_at": "2023-08-22T13:48:36.000000Z",
+        "updated_at": "2023-08-22T13:48:36.000000Z"
+      },
+      "slot": {
+        "id": 16,
+        "day_of_week": 2,
+        "start_time": "16:00:00",
+        "end_time": "17:30:00",
+        "max_bookings": 1,
+        "created_at": null,
+        "updated_at": null
+      }
+    }
+  }
+]
