@@ -24,11 +24,6 @@ const Booking = (props) => {
 	const [scheduleData, setScheduleData] = useState(generatorInstance.generateData());
 	const [currentIndex, setCurrentIndex] = useState(0);
 
-	// if (!scheduleData || scheduleData.length === 0) {
-	// 	// Handle the case when scheduleData is empty or undefined
-	// 	return <div>No schedule data available.</div>;
-	// }
-
 	const getScheduleData = (start_date) => {
 		setLoading(true);
 		Requests.getSlots(generatorInstance.formatDate(start_date)).then((res) => {
@@ -48,7 +43,6 @@ const Booking = (props) => {
 	const [globalDate, setGlobalDate] = useState(new Date())
 
 	const handlePreviousDay = (e) => {
-		// setCurrentIndex((prevIndex) => Math.max(prevIndex - 1, 0));
 		e.preventDefault();
 		getPreviousDate();
 
@@ -56,7 +50,6 @@ const Booking = (props) => {
 	};
 
 	const handleNextDay = (e) => {
-		// setCurrentIndex((prevIndex) => Math.min(prevIndex + 1, scheduleData.length - 1));
 		e.preventDefault();
 		getNextDate();
 
@@ -67,13 +60,10 @@ const Booking = (props) => {
 	const calculateDate = (originalDate, daysToAddOrSubtract) => {
 		const newDate = new Date(originalDate);
 
-		// Calculate the new date
 		newDate.setDate(newDate.getDate() + daysToAddOrSubtract);
 
-		// Check if the new date is earlier than today
 		const today = new Date();
 		if (newDate < today) {
-			// alert("you can't select past days")
 			return today;
 		}
 
@@ -96,17 +86,13 @@ const Booking = (props) => {
 	const currentDate = currentSchedule?.date;
 
 	const convertToAmPm = (time24) => {
-		// Extract the hours and minutes from the input time
 		const hours = parseInt(time24.substr(0, 2), 10);
 		const minutes = parseInt(time24.substr(3, 2), 10);
 
-		// Determine whether it's AM or PM
 		const period = hours >= 12 ? 'PM' : 'AM';
 
-		// Adjust the hours if necessary for AM/PM format
 		const amPmHours = hours % 12 === 0 ? 12 : hours % 12;
 
-		// Format the time in AM/PM format
 		const time12 = `${amPmHours}:${minutes.toString().padStart(2, '0')} ${period}`;
 
 		return time12;
@@ -114,16 +100,30 @@ const Booking = (props) => {
 
 	const [selectedSlot, setSelectedSlot] = useState(null);
 
+
+	const isPhysicalMeeting = clientData.meeting === 'Physical Meeting';
+	const isNightSlot = (slot) => slot.start_time === '19:00:00';
+
 	const handleClickSlot = (e, slot, sdate) => {
-		const sslot = {
-			"slot": slot,
-			"date": sdate
+		if (isPhysicalMeeting && isNightSlot(slot)) {
+			e.preventDefault();
+			const confirmMessage = 'Physical meetings cannot be scheduled at night. Please select an earlier slot.';
+			const confirmed = window.confirm(confirmMessage);
+
+			if (confirmed) {
+			} else {
+			}
+		} else {
+			e.preventDefault();
+			const sslot = {
+				slot,
+				date: sdate,
+			};
+			setSelectedSlot(sslot);
 		}
+	};
 
-		e.preventDefault()
-		setSelectedSlot(sslot);
 
-	}
 
 
 	const handleConfirmBooking = (e) => {
