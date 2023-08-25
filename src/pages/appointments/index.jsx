@@ -15,12 +15,17 @@ const Appointments = (props) => {
   const hisapage = '#2023&alfred!mth%';
   const mathu = 'mathualfred@hisa.com'
 
+  const [appointmentDetails, setAppointmentDetails] = useState(null);
+  const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  const shortDayNames = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
+
 
   const handleClose = () => {
     setshow(false);
   };
 
-  const handleShow = () => {
+  const handleShow = (appointment) => {
+    setAppointmentDetails(appointment);
     setshow(true);
   };
 
@@ -47,7 +52,6 @@ const Appointments = (props) => {
   }, []);
 
   const isAuthenticated = passwordInput === hisapage;
-  // const isAuthenticated = true;
 
   return (
     <div>
@@ -87,7 +91,7 @@ const Appointments = (props) => {
                       appointments.length === 0 ? (
                         <h3>No appointments available.</h3>
                       ) : (
-                        appointments.map((appointment) => (
+                        appointments.map((item) => (
                           <div className="appointment-list">
                             <div className="profile-info-widget">
                               <Link
@@ -101,24 +105,25 @@ const Appointments = (props) => {
                               </Link>
                               <div className="profile-det-info">
                                 <h3>
-                                  <Link to="#"> {appointment.name}</Link>
+                                  <Link to="#"> {item.appointment.client.name}</Link>
                                 </h3>
                                 <div className="patient-details">
                                   <h5>
-                                    <i className="far fa-clock"></i> {appointment.date}, {appointment.start_time}
+                                    <i className="far fa-clock"></i> {`${shortDayNames[new Date(item.appointment.date).getDay()]} ${item.appointment.date} AT
+                                     ${item.appointment.slot.start_time}`}
                                   </h5>
                                   <h5>
                                     <i className="fas fa-envelope"></i>{" "}
-                                    {appointment.email}
+                                    {item.appointment.client.email}
                                   </h5>
                                   <h5>
-                                    <i className="fas fa-phone"></i> {appointment.phone}
+                                    <i className="fas fa-phone"></i> {item.appointment.client.phone}
                                   </h5>
                                   <h5>
-                                    <i className="far fa-calendar"></i> {appointment.meeting} , {appointment.location}
+                                    <i className="far fa-calendar"></i> {item.appointment.meeting} , {item.appointment.location}
                                   </h5>
                                   <h5>
-                                    <i className="far fa-building"></i> {appointment.service}
+                                    <i className="far fa-building"></i> {item.appointment.service}
                                   </h5>
 
 
@@ -129,16 +134,11 @@ const Appointments = (props) => {
                               <Link
                                 to="#0"
                                 className="btn btn-sm bg-info-light"
-                                onClick={handleShow}
+                                onClick={() => handleShow(item.appointment)}
                               >
                                 <i className="far fa-eye"></i> View more details
                               </Link>
-                              {/* <Link to="#0" className="btn btn-sm bg-success-light">
-                      <i className="fas fa-check"></i> Accept
-                    </Link>
-                    <Link to="#0" className="btn btn-sm bg-danger-light">
-                      <i className="fas fa-times"></i> Cancel
-                    </Link> */}
+
                             </div>
                           </div>
                         ))
@@ -235,43 +235,52 @@ const Appointments = (props) => {
           <h5 className="modal-title">Appointment Details</h5>
         </Modal.Header>
         <Modal.Body>
-          <ul
-            className="info-details">
-            <li>
-              <div
-                className="details-header">
-                <div className="row">
-                  <div className="col-md-6">
-                    <span className="title">#APT0001</span>
-                    <span className="text">6 Aug 2023 8:00 AM</span>
-                  </div>
-                  <div className="col-md-6">
-                    <div className="text-end">
-                      <button
-                        type="button"
-                        className="btn bg-success-light btn-sm"
-                        id="topup_status"
-                      >
-                        Confirmed
-                      </button>
+          {appointmentDetails && (
+            <ul
+              className="info-details">
+              <li>
+                <div
+                  className="details-header">
+                  <div className="row">
+                    <div className="col-md-6">
+                      <span className="title"> Appointment ID </span>
+                    </div>
+                    <div className="col-md-6">
+                      <div className="text-end">
+                        <button
+                          type="button"
+                          className="btn bg-success-light btn-sm"
+                          id="topup_status"
+                        >
+                          #000{appointmentDetails.id}
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </li>
-            <li>
-              <span className="title">Status:</span>
-              <span className="text">Confirmed</span>
-            </li>
-            <li>
-              <span className="title"> Date:</span>
-              <span className="text">6 Aug 2023</span>
-            </li>
-            <li>
-              <span className="title">Duration</span>
-              <span className="text">30 minutes</span>
-            </li>
-          </ul>
+              </li>
+              <li>
+                <span className="title">Time </span>
+                <span className="text"> {`${dayNames[new Date(appointmentDetails.date).getDay()]}`} <br /> {appointmentDetails.date} <br /> <b>AT</b> - {appointmentDetails.slot.start_time}</span>
+              </li>
+              <li>
+                <span className="title">Type of Meeting</span>
+                <span className="text"> {appointmentDetails.meeting} - {appointmentDetails.location} </span>
+              </li>
+              <li>
+                <span className="title">Full names </span>
+                <span className="text"> {appointmentDetails.client.name} </span>
+              </li>
+              <li>
+                <span className="title"> Age </span>
+                <span className="text"> {appointmentDetails.client.age} </span>
+              </li>
+              <li>
+                <span className="title">Profession</span>
+                <span className="text"> {appointmentDetails.client.profession} </span>
+              </li>
+            </ul>
+          )}
         </Modal.Body>
       </Modal>
 
