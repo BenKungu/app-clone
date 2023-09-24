@@ -9,6 +9,47 @@ import Footer from "./footer";
 
 const Login = () => {
 
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const navigate = useNavigate();
+
+    const location = useLocation();
+
+    const handleLogin = async (e) => {
+        e.preventDefault();
+
+        const emailPass = {
+            "email": email,
+            "password": password
+        }
+        Requests.login(emailPass)
+            .then((response) => {
+                if (response.data.access_token) {
+                    const token = response.data.access_token;
+                    console.log("Session Data:", response.data);
+
+                    localStorage.setItem("token", token);
+                    setSession({
+                        isAuthenticated: true,
+                        user: response.data.user
+
+                    });
+                    if (location.pathname === "/appointments") {
+                        window.location.reload();
+                    }
+                    navigate("/appointments");
+                } else {
+                    alert("Unauthorized.");
+                }
+            }).catch((error) => {
+                console.error("Login Error:", error);
+                alert("the error is " + error);
+            });
+    };
+
+
+
     return (
         <>
             <div className="content top-space pt-5">
