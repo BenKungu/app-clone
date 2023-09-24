@@ -1,9 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import IMG01 from '../assets/images/doctor-thumb-02.jpg';
+import IMG01 from '../assets/images/avatar.jpg';
+import { clearSession } from "../pages/services/SessionManager";
+import { useNavigate } from 'react-router-dom';
+
 
 
 const DoctorSidebar = () => {
+
+  const navigate = useNavigate();
+
+
+  const handleLogout = () => {
+    clearSession();
+    setIsLoggedIn(false);
+
+    navigate('/login');
+  }
+
+
   let pathnames = window.location.pathname
   return (
     <>
@@ -21,7 +36,7 @@ const DoctorSidebar = () => {
               <h3>C.E.O Alfred Mathu</h3>
               <div className="patient-details">
                 <h5 className="mb-0">
-                  BED, MSC - NTM  &amp; Financial Doctor
+                  Founder Hisa Africa
                 </h5>
               </div>
             </div>
@@ -29,7 +44,7 @@ const DoctorSidebar = () => {
         </div>
         <div className="dashboard-widget">
           <nav className="dashboard-menu">
-            <ul>              
+            <ul>
               <li className={pathnames.includes("/doctor/doctor-dashboard") ? "active" : ""}>
                 <Link to="#">
                   <i className="fas fa-columns" />
@@ -42,7 +57,7 @@ const DoctorSidebar = () => {
                   <span>Appointments</span>
                 </Link>
               </li>
-              
+
               <li className={pathnames.includes("/doctor/schedule-timing") ? "active" : ""}>
                 <Link to="#">
                   <i className="fas fa-hourglass-start" />
@@ -53,6 +68,14 @@ const DoctorSidebar = () => {
                 <Link to="#">
                   <i className="fas fa-clock" />
                   <span>Available Timings</span>
+                </Link>
+              </li>
+              <li className={pathnames.includes("/login") ? "active" : ""}>
+                <Link to="/login"
+                  onClick={handleLogout}
+                >
+                  <i className="fas fa-sign-out-alt" />
+                  <span>Logout</span>
                 </Link>
               </li>
             </ul>
