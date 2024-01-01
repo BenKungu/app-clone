@@ -68,24 +68,7 @@ const ScheduleTiming = (props) => {
                                 {/* <!-- Schedule Nav --> */}
                                 <div className="schedule-nav">
                                   <ul className="nav nav-tabs nav-justified">
-                                    <li className="nav-item">
-                                      <Link
-                                        className="nav-link"
-                                        data-bs-toggle="tab"
-                                        to="#slot_sunday"
-                                      >
-                                        Sunday
-                                      </Link>
-                                    </li>
-                                    <li className="nav-item">
-                                      <Link
-                                        className="nav-link active"
-                                        data-bs-toggle="tab"
-                                        to="#slot_monday"
-                                      >
-                                        Monday
-                                      </Link>
-                                    </li>
+                                
                                     <li className="nav-item">
                                       <Link
                                         className="nav-link"
